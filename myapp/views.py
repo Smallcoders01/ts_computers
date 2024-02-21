@@ -1,16 +1,12 @@
-# myapp/views.py
-
 from django.shortcuts import render, redirect
 from .models import Service, SubService, Appointment
-from .forms import AppointmentForm
+from .forms import AppointmentForm, ContactForm
 from django.http import HttpResponse
 from .forms import ContactForm
-
 
 def home(request):
     services = Service.objects.all()
     return render(request, 'home.html', {'services': services})
-
 
 def sub_service_form(request, service_id):
     service = Service.objects.get(pk=service_id)
@@ -44,17 +40,24 @@ def sub_service_form(request, service_id):
 
     return render(request, 'sub_service_form.html', {'service': service, 'subservices': subservices, 'form': form})
 
-
 def about_us(request):
     return render(request, 'about_us.html')
 
-def contact_us(request):
+
+def contact_form(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
+            # Print form data for debugging
+            print(form.cleaned_data)
+            
+            # Save the form data to the database
             form.save()
-            return render(request, 'contact_us_success.html')
+            return redirect('contact_us_success')
     else:
         form = ContactForm()
 
     return render(request, 'contact_us.html', {'form': form})
+
+def contact_us_success(request):
+    return render(request, 'contact_us_success.html')

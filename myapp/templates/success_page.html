@@ -7,14 +7,20 @@
 {% block header %}Appointment Successful{% endblock %}
 
 {% block content %}
-    <p>Your appointment has been successfully booked!</p>
-    <p>Details:</p>
-    <ul>
-        <li>Service: {{ appointment.service.name }}</li>
-        <li>Subservice: {{ appointment.subservice.name }}</li>
-        <li>Name: {{ appointment.name }}</li>
-        <li>Phone: {{ appointment.phone }}</li>
-        <li>Date: {{ appointment.date }}</li>
-        <li>Time: {{ appointment.time }}</li>
-    </ul>
+    <div class="container mt-5">
+        <div class="alert alert-success" role="alert">
+            <h4 class="alert-heading">Your appointment has been successfully booked!</h4>
+            <p>Here are the details:</p>
+            <ul>
+                <li><strong>Service:</strong> {{ appointment.service.name }}</li>
+                <li><strong>Subservice:</strong> {{ appointment.subservice.name }}</li>
+                <li><strong>Name:</strong> {{ appointment.name }}</li>
+                <li><strong>Phone:</strong> {{ appointment.phone }}</li>
+                <li><strong>Date:</strong> {{ appointment.date }}</li>
+                <li><strong>Time:</strong> {{ appointment.time }}</li>
+            </ul>
+            <hr>
+            <p class="mb-0">Thank you for choosing our services!</p>
+        </div>
+    </div>
 {% endblock %}

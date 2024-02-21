@@ -1,104 +1,76 @@
-<!-- templates/home.html -->
-
 {% extends 'base.html' %}
-
-{% block title %}Home{% endblock %}
 {% load static %} 
 
-{% block header %}Welcome to My Cyber Cafe{% endblock %}
+{% block title %}Home{% endblock %}
 
 {% block content %}
-
-
-<section class="Container">
-    <img src="{% static 'image/back1.webp' %}" alt="" class="background-img">
-    <div class="content1">
-        <div class="qoute">
-            <h1>Dependable Tech Solutions</h1>
+<section class="hero-container">
+    <img src="{% static 'images/b2.avif' %}" alt="" class="img-fluid background-img">
+    <div class="hero-content text-white text-center">
+        <div class="content1">
+            <h1 class="main">Dependable Tech Solutions</h1>
+            <p class="para1">TS Computers is an established and reliable Tech Services firm. We are glad to provide
+                you with
+                trustworthy top-notch Tech services.</p>
+            <a href="{% url 'about_us' %}" class="btn btn-primary">Read more</a>
         </div>
-        <p class="para1">TS Computers is an established and reliable Tech Services firm. We are glad to provide you
-            with
-            trustworthy top-notch Tech services.</p>
-        <button class="btn-1"><a href="{% url 'about_us' %}"> Read more  </a> </button>
     </div>
-
 </section>
 
 
-<section class="Container2">
-    <div class="left-content">
-        <img src="{% static 'image/print.webp' %}" alt="" height="500px" width="700px">
-    </div>
-    <div class="right-content">
-        <h1 class="why">Why people choose the Services and solutions by TS Computers?</h1>
-        <div class="grid-right">
-            <div class="one">
-                <h1>Advanced Technologies</h1>
-                <p>We use the latest in technically advanced access control systems to serve you.</p>
+
+
+<section class="features-container mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <img src="{% static 'image/print.webp' %}" alt="" class="img-fluid feature-image">
             </div>
-            <div class="one">
-                <h1>Total Security Approach</h1>
-                <p>Our qualified team provides a complete security system for your home or business.</p>
-            </div>
-            <div class="one">
-                <h1>Innovative Working Technologies </h1>
-                <p>We provide only the most reliable Services based on the latest modern technical ways.</p>
-                <button class="btn-1">Read more</button>
-            </div>
-            <div class="one">
-                <h1>Outstanding Customer Service </h1>
-                <p>The exceptional level of service and attention to detail are the key principles of our work.</p>
+            <div class="col-md-6">
+                <h1 class="why">Why Choose Us?</h1>
+                <div class="feature-card">
+                    <h5 class="card-title">Advanced Technologies</h5>
+                    <p class="card-text">We use the latest in technically advanced access control systems to serve you.</p>
+                </div>
+                <div class="feature-card">
+                    <h5 class="card-title">Total Security Approach</h5>
+                    <p class="card-text">Our qualified team provides a complete security system for your home or business.</p>
+                </div>
+                <div class="feature-card">
+                    <h5 class="card-title">Innovative Working Technologies</h5>
+                    <p class="card-text">We provide only the most reliable services based on the latest modern technical ways.</p>
+                </div>
+                <div class="feature-card">
+                    <h5 class="card-title">Outstanding Customer Service</h5>
+                    <p class="card-text">The exceptional level of service and attention to detail are the key principles of our work.</p>
+                </div>
+                <a href="{% url 'about_us' %}" class="btn btn-primary mt-3">Read more</a>
             </div>
         </div>
     </div>
-
 </section>
 
-<section class="Container3">
-    <div class="head">
-        <h1>We offer fast, professional and
-            exceptional services.</h1>
-        <p class="para2">Take a look at the list of our featured solutions</p>
-    </div>
-    {% for service in services %}
-    <div class="cards">
-        <div class="card">
-            <a href="{% url 'sub_service_form' service.id %}">
-            {% if service.photo %}
-            <img src="{{ service.photo.url }}" alt="">
-            {% endif %}
-            <h2>{{ service.name }}</h2>
-            <p>{{ service.description }}</p>
-        </a>
+<section id="services-section" class="services-container mt-5">
+    <div class="container text-center">
+        <h1 class="section-title">Our Featured Services</h1>
+        <p class="section-subtitle">We offer fast, professional, and exceptional services. Take a look at our featured solutions.</p>
+        <div class="row">
+            {% for service in services %}
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card">
+                    <a href="{% url 'sub_service_form' service.id %}">
+                        {% if service.photo %}
+                            <img src="{{ service.photo.url }}" alt="" class="card-img-top">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ service.name }}</h5>
+                            <p class="card-text">{{ service.description }}</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
         </div>
-        {% endfor %}
     </div>
-    {% endblock %}
-
-    {% block footer %}
+</section>
 {% endblock %}
-
-
-
-
-
-
-
-
-
-
-    <!-- <p>Explore our services and make an appointment!</p>
-    
-    <h2>Available Services:</h2>
-    <ul>
-        {% for service in services %}
-            <li>
-                <strong>{{ service.name }}</strong><br>
-                Description: {{ service.description }}<br>
-                {% if service.photo %}
-                    <img src="{{ service.photo.url }}" alt="{{ service.name }} Photo" style="max-width: 200px; max-height: 200px;">
-                {% endif %}
-                <a href="{% url 'sub_service_form' service.id %}">Book Now</a>
-            </li>
-        {% endfor %}
-    </ul>

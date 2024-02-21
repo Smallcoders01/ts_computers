@@ -1,64 +1,43 @@
+
+
 {% extends 'base.html' %}
 
 {% block title %}Contact Us{% endblock %}
-
-{% block header %}Contact Us{% endblock %}
 {% load static %} 
 
 {% block content %}
-    <form method="post" action="">
-        
-        
-        <!-- <label for="id_name">Name:</label>
-        <input type="text" name="name" id="id_name" required>
-        
-        <label for="id_email">Email:</label>
-        <input type="email" name="email" id="id_email" required>
-        
-        <label for="id_question">Question:</label>
-        <textarea name="question" id="id_question" required></textarea>
-        
-        <input type="submit" value="Send Message"> -->
-
-
-
-
-        {% csrf_token %}
+    <div class="container mt-5">
         <section class="contact-section">
-            <form action="" class="contact-left">
-
-                <div class="contact-left-title">
-                    <h2>Get in touch</h2>
-                    <hr>
+            <form method="post" action="" class="row">
+                {% csrf_token %}
+                <div class="col-lg-6">
+                    <div class="contact-left">
+                        <div class="contact-left-title">
+                            <h2>Get in touch</h2>
+                            <hr>
+                        </div>
+                        <div class="form-group">
+                            <label for="id_name">Your Name:</label>
+                            <input type="text" name="name" id="id_name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="id_email">Your Email:</label>
+                            <input type="email" name="email" id="id_email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="id_message">Your Message:</label>
+                            <textarea name="message" id="id_message" cols="30" rows="5" class="form-control"
+                                placeholder="Type your message here..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
                 </div>
-                <input type="text" name="name" id="id_name" required>
-                <label for="email">Email:</label>
-                <textarea name="message" id="id_question" cols="30" rows="10" placeholder="Your message" class="input"></textarea>
-                <button type="submit" class="contact-btn">Submit</button>
+                <div class="col-lg-6">
+                    <div class="contact-right">
+                        <img src="{% static 'images/contact.avif' %}" alt="Contact Image">
+                    </div>
+                </div>
             </form>
-            <div class="contact-right">
-                <img src="{% static 'images/contact.avif'%}" alt="">
-            </div>
         </section>
-
-
-
-        <section class="contact-section">
-            <form action="" class="contact-left">
-                <div class="contact-left-title">
-                    <h2>Get in touch</h2>
-                    <hr>
-                </div>
-                <input type="text" name="name" placeholder="Your Name" class="input" required   id="id_name">
-                <input type="email" name="email" placeholder="Your email" class="input" required>
-                <textarea name="message" id="" cols="30" rows="10" placeholder="Your message" class="input"></textarea>
-                <button type="submit" class="contact-btn">Submit</button>
-            </form>
-            <div class="contact-right">
-                <img src="images/contact.avif" alt="">
-            </div>
-
-
-
-    </form>
+    </div>
 {% endblock %}

@@ -1,34 +1,47 @@
-<!-- templates/base.html -->
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}My Cyber Cafe{% endblock %}</title>
-    
+
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    <!-- Bootstrap CDN link -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
 <body>
-    <header>
-
-        <div class="navbar">
-            <div class="logo">
-                <img src="{% static 'image/logo1.png' %}" alt="" height="70px" width="300px">
+    <header class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'home' %}">TS COMPUTERS</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'home' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services-section">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'about_us' %}">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'contact_us' %}">Contact</a>
+                    </li>
+                </ul>
             </div>
-            <a href="{% url 'home' %}">Home</a>
-            <a href="#">Services</a>
-            <a href="{% url 'about_us' %}">About</a>
-            <a href="{% url 'contact_us' %}">Contact</a>
         </div>
-        
-
     </header>
 
     <main>
@@ -36,13 +49,50 @@
         {% endblock %}
     </main>
 
-    <footer class="footer">
-        <div class="icons">
-            <i class="fa-brands fa-instagram"></i>
-            <i class="fa-brands fa-whatsapp"></i>
-            <i class="fa-brands fa-square-twitter"></i>
-            <i class="fa-brands fa-facebook"></i>
+    <footer class="footer bg-dark text-light">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="icons">
+                        <a href="https://www.instagram.com/enter_sayad/"><i class="fa-brands fa-instagram"></i></a>
+                        <i class="fa-brands fa-whatsapp"></i>
+                        <i class="fa-brands fa-square-twitter"></i>
+                        <a href="https://www.facebook.com/profile.php?id=100004570549404&mibextid=2JQ9oc"><i
+                                class="fa-brands fa-facebook"></i></a>
+                    </div>
+                </div>
+            </div>
         </div>
     </footer>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-fz3v0LG0ayFb7gtR+jss/au5eKt9z+a27FRb6MZ4RBzHIyI6nMfnZdxNOe3jn3k"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function () {
+            $(".navbar-toggler").click(function () {
+                $(".navbar-collapse").toggleClass("show");
+            });
+
+            // Smooth scrolling for Services link
+            $('a.nav-link[href*="#services-section"]').on('click', function (event) {
+                var target = $($(this).attr('href'));
+                if (target.length) {
+                    event.preventDefault();
+                    $('html, body').animate({
+                        scrollTop: target.offset().top - $(".navbar").height() // Adjust the offset as needed
+                    }, 1000);
+                }
+            });
+        });
+    </script>
 </body>
+
 </html>
