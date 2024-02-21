@@ -17,9 +17,6 @@
     </div>
 </section>
 
-
-
-
 <section class="features-container mt-5">
     <div class="container">
         <div class="row">
@@ -58,7 +55,7 @@
             {% for service in services %}
             <div class="col-lg-4 col-md-6 mb-4">
                 <div class="card">
-                    <a href="{% url 'sub_service_form' service.id %}">
+                    <a href="{% url 'sub_service_form' service.id %}" class="text-decoration-none">
                         {% if service.photo %}
                             <img src="{{ service.photo.url }}" alt="" class="card-img-top">
                         {% endif %}
