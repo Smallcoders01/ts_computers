@@ -1,0 +1,25 @@
+<!-- myapp/templates/services.html -->
+
+{% extends 'base.html' %}
+{% load static %} 
+
+{% block content %}
+    <section>
+        <section class="Container3" id="service">
+            <div class="head">
+                <h1>We offer fast, professional and exceptional services.</h1>
+                <p class="para2">Take a look at the list of our featured solutions</p>
+            </div>
+
+            <div class="cards">
+                {% for service in services %}
+                    <a href="{% url 'sub_service_form' service.id %}" class="card">
+                        <img src="{{ service.photo.url }}" alt="">
+                        <h2>Revenue Services</h2>
+                        <p>{{ service.description }}</p>
+                    </a>
+                {% endfor %}
+            </div>
+        </section>
+    </section>
+{% endblock %}

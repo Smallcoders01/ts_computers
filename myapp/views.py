@@ -8,6 +8,10 @@ def home(request):
     services = Service.objects.all()
     return render(request, 'home.html', {'services': services})
 
+def services(request):
+    services = Service.objects.all()
+    return render(request, 'services.html', {'services': services})
+
 def sub_service_form(request, service_id):
     service = Service.objects.get(pk=service_id)
     subservices = service.subservices.all()
@@ -44,16 +48,13 @@ def about_us(request):
     return render(request, 'about_us.html')
 
 
+
 def contact_form(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
-            # Print form data for debugging
-            print(form.cleaned_data)
-            
-            # Save the form data to the database
             form.save()
-            return redirect('contact_us_success')
+            return redirect('contact_us_success')  # Update the redirect view name
     else:
         form = ContactForm()
 

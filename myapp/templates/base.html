@@ -13,86 +13,74 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- Bootstrap CDN link -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
 </head>
 
-<body>
-    <header class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand" href="{% url 'home' %}">TS COMPUTERS</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'home' %}">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#services-section">Services</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'about_us' %}">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'contact_us' %}">Contact</a>
-                    </li>
-                </ul>
-            </div>
+    <nav class="navbar">
+        <h1 class="logo">TS COMPUTERS</h1>
+        <ul class="nav-links">
+            <li class="active"><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'services' %}">Services</a></li>
+            <li><a href="{% url 'about_us' %}">About</a></li>
+            <li><a href="{% url 'contact_us' %}">Contact</a></li>
+        </ul>
+        <div class="bar">
+            <i class="fa-solid fa-bars"></i>
         </div>
-    </header>
+    </nav>
+
+
 
     <main>
         {% block content %}
         {% endblock %}
     </main>
 
-    <footer class="footer bg-dark text-light">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <div class="icons">
-                        <a href="https://www.instagram.com/enter_sayad/"><i class="fa-brands fa-instagram"></i></a>
-                        <i class="fa-brands fa-whatsapp"></i>
-                        <i class="fa-brands fa-square-twitter"></i>
-                        <a href="https://www.facebook.com/profile.php?id=100004570549404&mibextid=2JQ9oc"><i
-                                class="fa-brands fa-facebook"></i></a>
-                    </div>
-                </div>
-            </div>
+    <footer class="footer">
+        <div class="icons">
+            <a href="https://www.instagram.com/enter_sayad/"> <i class="fa-brands fa-instagram"></i></a>
+            <i class="fa-brands fa-whatsapp"></i>
+            <i class="fa-brands fa-square-twitter"></i>
+            <a href="https://www.facebook.com/profile.php?id=100004570549404&mibextid=2JQ9oc"><i
+                    class="fa-brands fa-facebook"></i></a>
         </div>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- Bootstrap JS and dependencies -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-        integrity="sha384-fz3v0LG0ayFb7gtR+jss/au5eKt9z+a27FRb6MZ4RBzHIyI6nMfnZdxNOe3jn3k"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
+  
     <script>
-        $(document).ready(function () {
-            $(".navbar-toggler").click(function () {
-                $(".navbar-collapse").toggleClass("show");
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuBtn = document.querySelector('.bar');
+            const navlinks = document.querySelector('.nav-links');
+            
+            menuBtn.addEventListener('click', () => {
+                navlinks.classList.toggle('mobile-menu');
             });
-
-            // Smooth scrolling for Services link
-            $('a.nav-link[href*="#services-section"]').on('click', function (event) {
-                var target = $($(this).attr('href'));
-                if (target.length) {
-                    event.preventDefault();
-                    $('html, body').animate({
-                        scrollTop: target.offset().top - $(".navbar").height() // Adjust the offset as needed
-                    }, 1000);
-                }
+    
+            document.getElementById('contact-form').addEventListener('submit', function(event) {
+                event.preventDefault();
+    
+                // Simulate sending the form data
+                setTimeout(function() {
+                    document.getElementById('contact-form').reset();
+                    document.getElementById('confirmation').style.display = 'flex';
+                    setTimeout(function() {
+                        document.getElementById('confirmation').style.display = 'none';
+                    }, 3000); // Show confirmation for 3 seconds
+                }, 1000); // Simulate a 1-second delay for sending the form
             });
         });
     </script>
+    
+
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZwT" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
 </body>
 
 </html>
